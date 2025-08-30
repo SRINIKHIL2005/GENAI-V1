@@ -3,3 +3,4 @@ bun.lockb
 .env
 .DS_Store
 *.log
+testing/gen-ai-hackathon-470117-41a95c94468a.json
