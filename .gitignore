@@ -96,6 +96,7 @@ saathi-wellness-friend/.env.*
 saathi-wellness-friend/firebase*.json
 
 # Testing secrets
+testing/
 testing/*.json
 testing/**/*.json
 
