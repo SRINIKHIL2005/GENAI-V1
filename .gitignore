@@ -1,5 +1,115 @@
+############################################
+# Generic / Node / Vite / React
+############################################
 node_modules/
+.pnp/
+.pnp.js
+.npm/
 bun.lockb
-.env
-.DS_Store
+
+# Build outputs
+build/
+dist/
+.out/
+.next/
+out/
+.vite/
+.vite-cache/
+parcel-cache/
+
+# Logs and reports
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 *.log
+coverage/
+.eslintcache
+
+# Local env & config (NEVER COMMIT SECRETS)
+.env
+.env.*
+.env.local
+.env.*.local
+*.env
+*.local.env
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.tmp/
+
+############################################
+# Python (testing folder)
+############################################
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+############################################
+# Secrets & credentials (generic)
+############################################
+# Never commit secrets
+*.pem
+*.key
+*.pfx
+*.p12
+*.crt
+*.cer
+*.der
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+secrets.*
+secret.*
+.keys/
+keys/
+
+# Cloud/service credentials
+*service-account*.json
+*service_account*.json
+*credentials*.json
+credentials.json
+**/firebase-adminsdk*.json
+**/firebaseServiceAccountKey.json
+**/google-credentials*.json
+**/google-credential*.json
+**/.aws/
+.aws/
+
+# Project-specific sensitive paths
+saathi-wellness-friend/.env
+saathi-wellness-friend/.env.*
+saathi-wellness-friend/firebase*.json
+
+# Testing secrets
+testing/*.json
+testing/**/*.json
+
+############################################
+# Tooling caches
+############################################
+.turbo/
+.cache/
+
+############################################
+# Media (optional; keep public assets as needed)
+############################################
+# Uncomment if you want to ignore raw media dropped accidentally at repo root
+# *.mp4
+# *.mov
+# *.avi
+# *.mkv
