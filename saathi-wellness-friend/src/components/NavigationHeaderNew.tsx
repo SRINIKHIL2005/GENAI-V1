@@ -68,7 +68,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   return (
     <header className="w-full z-50 transition-all duration-500">
       <div className="max-w-6xl mx-auto px-6 py-4">
-        {/* Main Navigation Container - Premium Glassmorphism */}
+  {/* Main Navigation Container - Glassmorphism */}
         <div className="relative">
           {/* Multi-layer Background Effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-white/[0.07] via-white/[0.12] to-white/[0.07] backdrop-blur-3xl rounded-2xl"></div>
@@ -91,7 +91,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
               </span>
             </div>
 
-            {/* Center Navigation - Premium Design */}
+            {/* Center Navigation - Design */}
             <div className="hidden md:flex items-center relative">
               <div className="absolute inset-0 bg-gradient-to-r from-black/[0.12] via-black/[0.18] to-black/[0.12] backdrop-blur-2xl rounded-xl border border-white/[0.08] shadow-2xl"></div>
               
@@ -221,7 +221,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
           </div>
         </div>
 
-        {/* Mobile Navigation - Premium Glassmorphism */}
+  {/* Mobile Navigation - Glassmorphism */}
         <div className="md:hidden mt-4">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-white/[0.07] via-white/[0.12] to-white/[0.07] backdrop-blur-3xl rounded-xl border border-white/[0.15] shadow-2xl"></div>

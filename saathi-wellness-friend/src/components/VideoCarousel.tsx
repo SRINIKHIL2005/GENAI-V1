@@ -219,7 +219,7 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ isDark = false }) => {
           <div className="absolute inset-0 flex items-end">
             <div className="w-full p-6 lg:p-12 xl:p-16">
               <div className="max-w-4xl">
-                {/* Premium Category Badge */}
+                {/* Category Badge */}
                 <div className="flex items-center gap-4 mb-6">
                   <div className={`
                     w-16 h-16 bg-gradient-to-br ${currentGradient} 
@@ -234,7 +234,7 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ isDark = false }) => {
                       Mental Wellness
                     </span>
                     <span className="text-white text-lg font-semibold">
-                      Premium Experience
+                      Wellness Experience
                     </span>
                   </div>
                 </div>

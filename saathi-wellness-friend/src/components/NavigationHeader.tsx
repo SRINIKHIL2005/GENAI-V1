@@ -86,7 +86,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
           {/* OUTER BOX - Advanced Professional UI Effects */}
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-200/40 via-blue-200/35 to-purple-200/30 backdrop-blur-3xl rounded-3xl border border-white/30 shadow-2xl shadow-indigo-500/25 before:absolute before:inset-0 before:rounded-3xl before:bg-gradient-to-r before:from-white/10 before:to-transparent before:opacity-50"></div>
           
-          {/* Premium Glow Effect Layer */}
+          {/* Glow Effect Layer */}
           <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-cyan-400/10 via-blue-500/10 to-indigo-600/10 blur-sm"></div>
           
           {/* Animated Border Gradient */}
