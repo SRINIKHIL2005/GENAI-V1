@@ -1,0 +1,589 @@
+# Gen AI Hackathon - Multi-Modal Emotion Detection Suite
+# .gitignore file for Python, Node.js, and AI/ML projects
+
+# ========================
+# SENSITIVE FILES & CREDENTIALS
+# ========================
+
+# Environment variables and secrets
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.staging
+
+# Allow example environment files
+!.env.example
+!.env.template
+
+# Google Cloud credentials
+*.json
+!package.json
+!package-lock.json
+service-account-key.json
+credentials.json
+google-credentials.json
+
+# API keys and tokens
+api_keys.txt
+secrets.txt
+*.key
+*.pem
+*.p12
+
+# ========================
+# PYTHON
+# ========================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+myenv/
+.venv/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+.idea/
+
+# ========================
+# NODE.JS
+# ========================
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage
+.grunt
+
+# Bower dependency directory
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons
+build/Release
+
+# Dependency directories
+jspm_packages/
+
+# Snowpack dependency directory
+web_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+out
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+storybook-static
+
+# Temporary folders
+tmp/
+temp/
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# ========================
+# AI/ML SPECIFIC
+# ========================
+
+# Model files
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.pb
+*.pth
+*.pt
+*.onnx
+*.tflite
+*.mlmodel
+
+# Dataset files
+*.csv
+*.tsv
+*.txt
+*.json
+!package.json
+!package-lock.json
+data/
+datasets/
+training_data/
+test_data/
+
+# Tensorflow
+*.tfrecord
+*.tfevents.*
+checkpoints/
+logs/
+tensorboard_logs/
+
+# PyTorch
+lightning_logs/
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Weights & Biases
+wandb/
+
+# DVC
+.dvc
+.dvcignore
+
+# ========================
+# MEDIA FILES
+# ========================
+
+# Audio files
+*.mp3
+*.wav
+*.m4a
+*.aac
+*.ogg
+*.flac
+*.wma
+
+# Video files
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.webm
+*.mkv
+
+# Image files (except small icons/logos)
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.svg
+*.ico
+*.webp
+
+# Exclude specific small assets if needed
+!logo.png
+!icon.ico
+!favicon.ico
+
+# ========================
+# AUDIO/VOICE PROCESSING
+# ========================
+
+# Temporary audio files
+temp_*.wav
+temp_*.mp3
+output_*.wav
+output_*.mp3
+user_audio_*.wav
+response_*.mp3
+
+# Audio processing cache
+audio_cache/
+voice_cache/
+
+# ========================
+# COMPUTER VISION
+# ========================
+
+# OpenCV cache
+.opencv_cache/
+
+# Image processing temporary files
+processed_images/
+temp_frames/
+detection_results/
+
+# Video processing
+video_output/
+frame_cache/
+
+# ========================
+# TEXT PROCESSING
+# ========================
+
+# NLP model downloads
+nltk_data/
+spacy_models/
+transformers_cache/
+
+# Text processing outputs
+processed_text/
+sentiment_results/
+emotion_analysis/
+
+# ========================
+# DATABASE
+# ========================
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Database dumps
+*.sql
+*.dump
+
+# ========================
+# LOGS & TEMPORARY FILES
+# ========================
+
+# Log files
+*.log
+logs/
+log/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ========================
+# TESTING & ANALYSIS
+# ========================
+
+# Test outputs
+test_results/
+test_output/
+testing_data/
+
+# Performance analysis
+profiling_results/
+benchmark_results/
+
+# Experiment tracking
+experiments/
+results/
+analysis_output/
+
+# ========================
+# DOCUMENTATION BUILD
+# ========================
+
+# Sphinx documentation
+docs/_build/
+docs/build/
+
+# mkdocs
+site/
+
+# ========================
+# DEPLOYMENT
+# ========================
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+.docker/
+
+# Kubernetes
+*.yaml
+*.yml
+!package.json
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# ========================
+# OPERATING SYSTEM
+# ========================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ========================
+# BACKUP FILES
+# ========================
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+*_backup
+*_old
+
+# ========================
+# PROJECT SPECIFIC
+# ========================
+
+# Session recordings and transcripts
+transcripts/
+session_*/
+recordings/
+chat_logs/
+
+# Generated audio responses
+response_audio/
+synthesized_speech/
+
+# Emotion detection data
+emotion_data/
+detection_logs/
+analysis_results/
+
+# Training data and results
+training_sessions/
+model_weights/
+evaluation_results/
+
+# Configuration overrides
+config_local.py
+config_override.json
+local_settings.py
+
+# Development databases
+dev.db
+test.db
+local.db
+
+# Cache directories
+.cache/
+cache/
+__cache__/
+
+# ========================
+# COMMENTS & NOTES
+# ========================
+
+# This .gitignore covers:
+# - Python virtual environments and packages
+# - Node.js dependencies and build artifacts
+# - AI/ML model files and datasets
+# - Audio/video processing temporary files
+# - Google Cloud credentials and API keys
+# - Generated transcripts and session data
+# - Cache and temporary files
+# - Operating system specific files
+# - IDE and editor configurations
+
+# Remember to:
+# 1. Keep your .env files secure and never commit them
+# 2. Use environment variables for all sensitive data
+# 3. Regularly review and update this file as the project grows
+# 4. Add specific exclusions for any large datasets or model files
