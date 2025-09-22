@@ -29,6 +29,15 @@ jobs:
 
       - name: Install and build
         working-directory: saathi-wellness-friend
+        env:
+          VITE_FIREBASE_API_KEY: AIzaSyDXuKmZ7FLyiZ1oT7ktjYm8Cp3NQKf6SSM
+          VITE_FIREBASE_AUTH_DOMAIN: saathi-78df6.firebaseapp.com
+          VITE_FIREBASE_DATABASE_URL: https://saathi-78df6-default-rtdb.firebaseio.com
+          VITE_FIREBASE_PROJECT_ID: saathi-78df6
+          VITE_FIREBASE_STORAGE_BUCKET: saathi-78df6.firebasestorage.app
+          VITE_FIREBASE_MESSAGING_SENDER_ID: 1029737429745
+          VITE_FIREBASE_APP_ID: 1:1029737429745:web:290385faddecaa124ec750
+          VITE_FIREBASE_MEASUREMENT_ID: G-PY2S8VV96D
         run: |
           npm ci
           npm run build
