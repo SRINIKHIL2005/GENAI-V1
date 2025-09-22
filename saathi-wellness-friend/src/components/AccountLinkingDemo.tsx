@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link2, CheckCircle, AlertCircle, User, Mail } from "lucide-react";
+import { CheckCircle, AlertCircle, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -29,7 +29,7 @@ const AccountLinkingDemo: React.FC = () => {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <Link2 className="h-6 w-6 text-blue-500" />
+              <User className="h-6 w-6 text-blue-500" />
               <span>Link Additional Account</span>
             </CardTitle>
             <p className="text-gray-600 dark:text-gray-400">
@@ -45,7 +45,7 @@ const AccountLinkingDemo: React.FC = () => {
                     Email Address
                   </label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <Input
                       type="email"
                       value={email}

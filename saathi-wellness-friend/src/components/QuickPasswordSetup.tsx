@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Key, Eye, EyeOff, CheckCircle } from "lucide-react";
+import { Eye, EyeOff, CheckCircle, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -42,7 +42,7 @@ const QuickPasswordSetup: React.FC = () => {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <Key className="h-6 w-6 text-blue-500" />
+              <CheckCircle className="h-6 w-6 text-blue-500" />
               <span>Quick Password Setup</span>
             </CardTitle>
             <p className="text-gray-600 dark:text-gray-400">

@@ -7,12 +7,9 @@ import {
   Heart,
   Sun,
   Moon,
-  Globe,
   User,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/useTheme";
-import { usePageTranslation } from "@/hooks/usePageTranslation";
 import { logoutUser } from "@/services/firebase.service";
 
 interface NavigationHeaderProps {
@@ -28,7 +25,6 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
 }) => {
   const locationPath = typeof window !== 'undefined' ? window.location.pathname : '/';
   const { theme, setTheme } = useTheme();
-  const { setLanguage, currentLanguage } = usePageTranslation();
   const [showLogoutMenu, setShowLogoutMenu] = useState(false);
 
   const handleLogout = async () => {
@@ -67,13 +63,6 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
-  };
-
-  const cycleLanguage = () => {
-    const languages = ['en', 'es', 'hi'];
-    const currentIndex = languages.indexOf(currentLanguage);
-    const nextIndex = (currentIndex + 1) % languages.length;
-    setLanguage(languages[nextIndex]);
   };
 
   const isActive = (path: string) => locationPath === path;

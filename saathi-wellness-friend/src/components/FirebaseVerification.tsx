@@ -2,7 +2,7 @@
 // This script verifies all Firebase services are properly configured
 
 import { auth, db, storage } from '@/config/firebase.config';
-import { GoogleAuthProvider, User } from 'firebase/auth';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 console.log('🔥 Firebase Setup Verification Started...\n');
 

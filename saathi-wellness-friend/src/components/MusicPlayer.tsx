@@ -32,13 +32,13 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ className = '' }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
   const [currentTime, setCurrentTime] = useState(0);
-  const [volume, setVolume] = useState(0.8);
+  const [volume] = useState(0.8);
   const [isMuted, setIsMuted] = useState(false);
   const [isShuffled, setIsShuffled] = useState(false);
   const [isRepeating, setIsRepeating] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>('recommended');
   const [searchQuery, setSearchQuery] = useState('');
-  const [currentMood, setCurrentMood] = useState('calm');
+  const [currentMood] = useState('calm');
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
