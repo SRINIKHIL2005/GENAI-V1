@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { ArrowLeft, Globe, Moon, Sun, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTheme } from "@/hooks/useTheme";
+import { getVideoPath } from '@/utils/assets';
 import { useAuth } from "@/hooks/useAuth.tsx";
+import { useTheme } from "@/hooks/useTheme";
 import { toast } from "sonner";
 
 interface EnhancedAuthProps {
@@ -217,7 +218,7 @@ const EnhancedAuth: React.FC<EnhancedAuthProps> = ({ onBack, onSuccess }) => {
             }}
           >
             <source 
-              src="/Videos/Night_Beach_View_Video_Generated.mp4" 
+              src={getVideoPath("Night_Beach_View_Video_Generated.mp4")} 
               type="video/mp4" 
             />
           </video>
@@ -237,7 +238,7 @@ const EnhancedAuth: React.FC<EnhancedAuthProps> = ({ onBack, onSuccess }) => {
             }}
           >
             <source 
-              src="/Videos/Sunny_Beach_Video_With_Waves.mp4" 
+              src={getVideoPath("Sunny_Beach_Video_With_Waves.mp4")} 
               type="video/mp4" 
             />
           </video>

@@ -1,15 +1,24 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta http-equiv="refresh" content="0; url=/GENAI-V1/" />
+    <meta charset="utf-8">
+    <title>Saathi - Your Wellness Friend</title>
+    <script>
+      // SPA redirect script for GitHub Pages
+      // This script takes the current URL and redirects to the index page
+      // while preserving the path as a query parameter
+      var pathSegmentsToKeep = 1; // /GENAI-V1/
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + 
+        '/?/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
   </head>
   <body>
-    <script>
-      // SPA redirect for GitHub Pages
-      const path = location.pathname.replace(/^\/|\/$/g, '')
-      if (!path.startsWith('GENAI-V1')) {
-        location.replace('/GENAI-V1/')
-      }
-    </script>
   </body>
 </html>
