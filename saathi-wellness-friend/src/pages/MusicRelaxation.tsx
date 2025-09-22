@@ -27,7 +27,6 @@ const MusicRelaxation: React.FC = () => {
   const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(0.7);
   const [isShuffled, setIsShuffled] = useState(false);
   const [isRepeating, setIsRepeating] = useState(false);
@@ -129,7 +128,6 @@ const MusicRelaxation: React.FC = () => {
     if (!audio) return;
 
     const updateTime = () => setCurrentTime(audio.currentTime);
-    const updateDuration = () => setDuration(audio.duration);
     const handleEnded = () => {
       if (isRepeating) {
         audio.currentTime = 0;
@@ -140,12 +138,10 @@ const MusicRelaxation: React.FC = () => {
     };
 
     audio.addEventListener("timeupdate", updateTime);
-    audio.addEventListener("loadedmetadata", updateDuration);
     audio.addEventListener("ended", handleEnded);
 
     return () => {
       audio.removeEventListener("timeupdate", updateTime);
-      audio.removeEventListener("loadedmetadata", updateDuration);
       audio.removeEventListener("ended", handleEnded);
     };
   }, [isRepeating]);

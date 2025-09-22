@@ -162,7 +162,7 @@ export const getMoodHistory = async (uid: string, limit = 30) => {
       orderBy('timestamp', 'desc'),
     );
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })).slice(0, limit);
   } catch (error) {
     throw error;
   }
@@ -189,7 +189,7 @@ export const getChatHistory = async (uid: string, limit = 50) => {
       orderBy('timestamp', 'desc'),
     );
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })).slice(0, limit);
   } catch (error) {
     throw error;
   }

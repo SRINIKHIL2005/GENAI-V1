@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Languages, Mic, Volume2, Copy, Check, ArrowRight } from "lucide-react";
+import { Languages, Volume2, Copy, Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import WellnessHeader from "@/components/WellnessHeader";

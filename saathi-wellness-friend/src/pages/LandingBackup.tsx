@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Heart, Shield, Globe, Zap, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { usePageTranslation } from "@/hooks/usePageTranslation";
 import { useTheme } from "@/hooks/useTheme";
 import EnhancedAuth from "./EnhancedAuth";
 import NavigationHeader from "@/components/NavigationHeader";
