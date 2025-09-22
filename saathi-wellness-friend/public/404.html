@@ -4,21 +4,26 @@
     <meta charset="utf-8">
     <title>Saathi - Your Wellness Friend</title>
     <script>
-      // SPA redirect script for GitHub Pages
-      // This script takes the current URL and redirects to the index page
-      // while preserving the path as a query parameter
-      var pathSegmentsToKeep = 1; // /GENAI-V1/
-      var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + 
-        '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
+      // Simple redirect to base path for GitHub Pages SPA
+      var basePath = '/GENAI-V1/';
+      var fullPath = window.location.href;
+      
+      // If we're not already at the base path, redirect there
+      if (!fullPath.includes(basePath + '?p=')) {
+        var pathName = window.location.pathname;
+        var search = window.location.search;
+        var hash = window.location.hash;
+        
+        // Extract the route part after /GENAI-V1/
+        var route = pathName.replace(basePath, '');
+        
+        // Redirect to base with route as parameter
+        window.location.replace(basePath + '?p=' + encodeURIComponent(route) + 
+                              (search ? '&' + search.slice(1) : '') + hash);
+      }
     </script>
   </head>
   <body>
+    <p>Redirecting...</p>
   </body>
 </html>
