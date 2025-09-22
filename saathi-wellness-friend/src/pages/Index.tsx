@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getCSSBackgroundUrl } from '@/utils/assets';
 import { 
   User,
   MessageCircle,
@@ -78,8 +79,8 @@ const Index: React.FC = () => {
         className="fixed inset-0 bg-cover bg-center bg-no-repeat z-0 transition-all duration-1000"
         style={{
           backgroundImage: theme === 'light' 
-            ? `url('/Videos/Gemini_Generated_Image_o3tfm6o3tfm6o3tf.png')`
-            : `url('/Videos/Gemini_Generated_Image_5mb6o5mb6o5mb6o5.png')`
+            ? getCSSBackgroundUrl('Videos/Gemini_Generated_Image_o3tfm6o3tfm6o3tf.png')
+            : getCSSBackgroundUrl('Videos/Gemini_Generated_Image_5mb6o5mb6o5mb6o5.png')
         }}
       >
         {/* Dynamic overlay based on theme */}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getVideoPath } from '@/utils/assets';
 import { 
   Heart, 
   Moon,
@@ -68,7 +69,7 @@ const DarkLanding: React.FC = () => {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ filter: "brightness(0.4) contrast(1.2)" }}
         >
-          <source src="/Videos/solar_system_journey.mp4" type="video/mp4" />
+          <source src={getVideoPath("solar_system_journey.mp4")} type="video/mp4" />
         </video>
 
         {/* Gradient Overlays */}

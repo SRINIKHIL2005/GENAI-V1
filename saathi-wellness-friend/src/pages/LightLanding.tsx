@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { getVideoPath } from '@/utils/assets';
 import { 
   Heart, 
   Sun,
@@ -114,7 +115,7 @@ const LightLanding: React.FC = () => {
           className="fixed inset-0 -z-10 w-screen h-screen object-cover will-change-transform pointer-events-none"
           style={{ filter: "brightness(1.05)", transform: 'translateZ(0) translateY(10vh) scale(1.15)', objectPosition: 'center center' }}
         >
-          <source src="/Videos/7385122-uhd_3840_2160_30fps.mp4?v=hires" type="video/mp4" />
+          <source src={getVideoPath("7385122-uhd_3840_2160_30fps.mp4") + "?v=hires"} type="video/mp4" />
         </video>
 
         {/* No global overlays to preserve 4K clarity */}

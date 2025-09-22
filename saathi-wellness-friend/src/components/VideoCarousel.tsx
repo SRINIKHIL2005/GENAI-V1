@@ -10,7 +10,7 @@ const features = [
     id: "conversations",
     title: "Mindful Conversations",
     description: "Engage in uplifting dialogues that nurture your spirit and guide you toward mental clarity and emotional balance.",
-    video: "/Conversation.mp4",
+    video: `${import.meta.env.BASE_URL}Conversation.mp4`,
     icon: MessageCircle,
     gradient: "from-emerald-400 to-teal-500",
     darkGradient: "from-indigo-600 to-purple-700"
@@ -19,7 +19,7 @@ const features = [
     id: "meditations", 
     title: "Guided Meditations",
     description: "Experience personalized meditation sessions that adapt to your mood, helping you find inner peace and tranquility.",
-    video: "/Meditation.mp4",
+    video: `${import.meta.env.BASE_URL}Meditation.mp4`,
     icon: Mic,
     gradient: "from-blue-400 to-cyan-500", 
     darkGradient: "from-purple-600 to-pink-700"
@@ -28,7 +28,7 @@ const features = [
     id: "insights",
     title: "Wellness Insights", 
     description: "Track your emotional journey with beautiful visualizations that celebrate your progress and growth milestones.",
-    video: "/Wellness.mp4",
+    video: `${import.meta.env.BASE_URL}Wellness.mp4`,
     icon: BarChart3,
     gradient: "from-purple-400 to-pink-500",
     darkGradient: "from-blue-600 to-indigo-700"
@@ -37,7 +37,7 @@ const features = [
     id: "haven",
     title: "Safe Haven",
     description: "Your personal sanctuary where thoughts and feelings are protected with the highest levels of privacy and care.", 
-    video: "/Secure.mp4",
+    video: `${import.meta.env.BASE_URL}Secure.mp4`,
     icon: Shield,
     gradient: "from-orange-400 to-amber-500",
     darkGradient: "from-slate-600 to-blue-700"
