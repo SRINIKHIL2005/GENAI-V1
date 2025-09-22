@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { 
-  Globe,
   User,
   MessageCircle,
   Shield,
-  Zap,
   Heart,
   Mic,
   TrendingUp,

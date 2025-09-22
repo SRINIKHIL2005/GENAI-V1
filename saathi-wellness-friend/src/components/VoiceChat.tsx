@@ -21,7 +21,7 @@ const VoiceChat: React.FC<VoiceChatProps> = ({ className = '' }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [recordingDuration, setRecordingDuration] = useState(0);
-  const [volume, setVolume] = useState(0.8);
+  const [volume] = useState(0.8);
   const [isMuted, setIsMuted] = useState(false);
   const [voiceMessages, setVoiceMessages] = useState<VoiceMessage[]>([
     {

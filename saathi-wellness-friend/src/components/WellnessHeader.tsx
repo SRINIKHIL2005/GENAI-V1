@@ -3,7 +3,6 @@ import { Bell, Search, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/useAuth";
-import { usePageTranslation } from "@/hooks/usePageTranslation";
 
 interface WellnessHeaderProps {
   title?: string;
@@ -15,7 +14,6 @@ const WellnessHeader: React.FC<WellnessHeaderProps> = ({
   showSearch = true 
 }) => {
   const { currentUser } = useAuth();
-  const { t } = usePageTranslation();
 
   return (
     <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-6 py-4">

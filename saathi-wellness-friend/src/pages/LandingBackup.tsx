@@ -10,7 +10,6 @@ import NavigationHeader from "@/components/NavigationHeader";
 // This is your backup of the ORIGINAL working Landing.tsx with professional design
 const LandingBackup: React.FC = () => {
   const [showAuth, setShowAuth] = useState(false);
-  const { t } = usePageTranslation();
   const { theme } = useTheme();
 
   const features = [
