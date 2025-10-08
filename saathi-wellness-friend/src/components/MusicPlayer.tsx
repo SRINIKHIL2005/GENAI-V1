@@ -42,9 +42,10 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ className = '' }) => {
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  const asset = (p: string) => `${(import.meta.env.BASE_URL || '/').replace(/\/$/, '/')}${p}`;
   const backgroundImage = theme === 'light' 
-    ? "url('/Videos/Gemini_Generated_Image_o3tfm6o3tfm6o3tf.png')"
-    : "url('/Videos/Gemini_Generated_Image_5mb6o5mb6o5mb6o5.png')";
+    ? `url('${asset("Videos/Gemini_Generated_Image_o3tfm6o3tfm6o3tf.png")}')`
+    : `url('${asset("Videos/Gemini_Generated_Image_5mb6o5mb6o5mb6o5.png")}')`;
 
   const tracks: Track[] = [
     {

@@ -57,9 +57,10 @@ const MoodTracking: React.FC<MoodTrackingProps> = ({ className = '', isOpen = tr
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  const asset = (p: string) => `${(import.meta.env.BASE_URL || '/').replace(/\/$/, '/')}${p}`;
   const backgroundImage = theme === 'light' 
-    ? "url('/Videos/Gemini_Generated_Image_o3tfm6o3tfm6o3tf.png')"
-    : "url('/Videos/Gemini_Generated_Image_5mb6o5mb6o5mb6o5.png')";
+    ? `url('${asset("Videos/Gemini_Generated_Image_o3tfm6o3tfm6o3tf.png")}')`
+    : `url('${asset("Videos/Gemini_Generated_Image_5mb6o5mb6o5mb6o5.png")}')`;
 
   const emotions = [
     { id: 'happy', label: 'Happy', icon: '😊', color: 'from-yellow-400 to-orange-500' },

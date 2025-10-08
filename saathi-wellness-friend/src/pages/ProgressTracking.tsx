@@ -33,9 +33,10 @@ const ProgressTracking: React.FC = () => {
   const [goals, setGoals] = useState<Goal[]>([]);
   const [selectedPeriod, setSelectedPeriod] = useState<"week" | "month" | "year">("week");
 
+  const asset = (p: string) => `${(import.meta.env.BASE_URL || '/').replace(/\/$/, '/')}${p}`;
   const backgroundImage = theme === 'light' 
-    ? "url('/Videos/Gemini_Generated_Image_o3tfm6o3tfm6o3tf.png')"
-    : "url('/Videos/Gemini_Generated_Image_5mb6o5mb6o5mb6o5.png')";
+    ? `url('${asset("Videos/Gemini_Generated_Image_o3tfm6o3tfm6o3tf.png")}')`
+    : `url('${asset("Videos/Gemini_Generated_Image_5mb6o5mb6o5mb6o5.png")}')`;
 
   useEffect(() => {
     // Load progress data from localStorage or generate sample data

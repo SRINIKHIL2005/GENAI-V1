@@ -16,9 +16,10 @@ const DailyCheckIn: React.FC = () => {
   
   const { theme } = useTheme();
 
+  const asset = (p: string) => `${(import.meta.env.BASE_URL || '/').replace(/\/$/, '/')}${p}`;
   const backgroundImage = theme === 'light' 
-    ? "url('/Videos/Gemini_Generated_Image_o3tfm6o3tfm6o3tf.png')"
-    : "url('/Videos/Gemini_Generated_Image_5mb6o5mb6o5mb6o5.png')";
+    ? `url('${asset("Videos/Gemini_Generated_Image_o3tfm6o3tfm6o3tf.png")}')`
+    : `url('${asset("Videos/Gemini_Generated_Image_5mb6o5mb6o5mb6o5.png")}')`;
 
   const moods = [
     { id: "excellent", label: "Excellent", icon: Sun, color: "text-yellow-500", bg: "bg-yellow-50 dark:bg-yellow-900/20" },
