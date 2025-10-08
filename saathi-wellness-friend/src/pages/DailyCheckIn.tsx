@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import NavigationHeader from "@/components/NavigationHeader";
-import { usePageTranslation } from "@/hooks/usePageTranslation";
 import { useTheme } from "@/hooks/useTheme";
 
 const DailyCheckIn: React.FC = () => {
@@ -15,7 +14,6 @@ const DailyCheckIn: React.FC = () => {
   const [challenges, setChallenges] = useState("");
   const [submitted, setSubmitted] = useState(false);
   
-  const { t } = usePageTranslation();
   const { theme } = useTheme();
 
   const backgroundImage = theme === 'light' 
