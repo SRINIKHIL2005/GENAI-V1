@@ -3,7 +3,7 @@ import { Eye, EyeOff, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import WellnessHeader from "@/components/WellnessHeader";
+import NavigationHeader from "@/components/NavigationHeader";
 
 const QuickPasswordSetup: React.FC = () => {
   const [password, setPassword] = useState("");
@@ -36,7 +36,7 @@ const QuickPasswordSetup: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <WellnessHeader title="Password Setup" />
+  <NavigationHeader />
       
       <div className="max-w-md mx-auto p-6">
         <Card>

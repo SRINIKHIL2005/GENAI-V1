@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Music, Play, Pause, SkipForward, SkipBack, Volume2, Shuffle, Repeat } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import WellnessHeader from "@/components/WellnessHeader";
+import NavigationHeader from "@/components/NavigationHeader";
 import { useTheme } from "@/hooks/useTheme";
 
 interface Track {
@@ -240,7 +240,7 @@ const MusicRelaxation: React.FC = () => {
       {/* Global glassmorphism overlay - reduced opacity for better background visibility */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-blue-500/3 to-purple-500/5 pointer-events-none"></div>
       
-      <WellnessHeader title="Music & Relaxation" />
+  <NavigationHeader />
       
       <div className="relative max-w-4xl mx-auto p-6 space-y-6">
         {/* Music Player */}

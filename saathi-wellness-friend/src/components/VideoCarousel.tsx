@@ -8,39 +8,43 @@ interface VideoCarouselProps {
 const features = [
   {
     id: "conversations",
-    title: "Mindful Conversations",
-    description: "Engage in uplifting dialogues that nurture your spirit and guide you toward mental clarity and emotional balance.",
+    title: "Free AI Conversations",
+    description: "Unlimited meaningful conversations with your AI wellness companion - available 24/7 at no cost.",
     video: `${import.meta.env.BASE_URL}Conversation.mp4`,
     icon: MessageCircle,
     gradient: "from-emerald-400 to-teal-500",
-    darkGradient: "from-indigo-600 to-purple-700"
+    darkGradient: "from-indigo-600 to-purple-700",
+    freeFeature: "Unlimited Chats"
   },
   {
     id: "meditations", 
-    title: "Guided Meditations",
-    description: "Experience personalized meditation sessions that adapt to your mood, helping you find inner peace and tranquility.",
+    title: "Free Guided Meditations",
+    description: "Access hundreds of personalized meditation sessions completely free - no subscription required.",
     video: `${import.meta.env.BASE_URL}Meditation.mp4`,
     icon: Mic,
     gradient: "from-blue-400 to-cyan-500", 
-    darkGradient: "from-purple-600 to-pink-700"
+    darkGradient: "from-purple-600 to-pink-700",
+    freeFeature: "Hundreds of Sessions"
   },
   {
     id: "insights",
-    title: "Wellness Insights", 
-    description: "Track your emotional journey with beautiful visualizations that celebrate your progress and growth milestones.",
+    title: "Free Wellness Tracking", 
+    description: "Monitor your mental health progress with professional-grade analytics - all features included at no charge.",
     video: `${import.meta.env.BASE_URL}Wellness.mp4`,
     icon: BarChart3,
     gradient: "from-purple-400 to-pink-500",
-    darkGradient: "from-blue-600 to-indigo-700"
+    darkGradient: "from-blue-600 to-indigo-700",
+    freeFeature: "Advanced Analytics"
   },
   {
     id: "haven",
-    title: "Safe Haven",
-    description: "Your personal sanctuary where thoughts and feelings are protected with the highest levels of privacy and care.", 
+    title: "Free Private Space",
+    description: "Your completely secure personal sanctuary with enterprise-grade privacy protection - forever free.", 
     video: `${import.meta.env.BASE_URL}Secure.mp4`,
     icon: Shield,
     gradient: "from-orange-400 to-amber-500",
-    darkGradient: "from-slate-600 to-blue-700"
+    darkGradient: "from-slate-600 to-blue-700",
+    freeFeature: "Privacy Protected"
   },
 ];
 
@@ -137,7 +141,7 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ isDark = false }) => {
         {/* Main Hero Video Container - Cinematic 21:9 aspect ratio */}
         <div className={`
           relative w-full aspect-[21/9] lg:aspect-[21/8] xl:aspect-[21/7]
-          overflow-hidden bg-black
+          overflow-hidden bg-black rounded-3xl p-2 md:p-3
           transform transition-all duration-500 ease-out
           ${isVideoHovered ? 'scale-[1.02]' : 'scale-100'}
         `}>
@@ -147,7 +151,7 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ isDark = false }) => {
             ref={videoRef}
             src={currentFeature.video}
             className={`
-              absolute inset-0 w-full h-full object-cover
+              absolute inset-0 w-[calc(100%-1rem)] h-[calc(100%-1rem)] md:w-[calc(100%-1.5rem)] md:h-[calc(100%-1.5rem)] object-cover rounded-2xl md:rounded-2xl ml-2 mt-2 md:ml-3 md:mt-3
               transition-all duration-1000 ease-out
               ${videoLoaded && isVideoHovered ? 'opacity-100 scale-105' : 'opacity-0 scale-100'}
             `}
@@ -161,6 +165,7 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ isDark = false }) => {
           {/* Cinematic Fallback Background */}
           <div className={`
             absolute inset-0 bg-gradient-to-br ${currentGradient}
+            rounded-2xl md:rounded-2xl m-2 md:m-3
             transition-all duration-1000
             ${videoLoaded && isVideoHovered ? 'opacity-0 scale-110' : 'opacity-100 scale-100'}
           `}>
@@ -182,9 +187,9 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ isDark = false }) => {
           </div>
           
           {/* Netflix-style Multiple Gradient Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/60 rounded-2xl md:rounded-2xl m-2 md:m-3" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent rounded-2xl md:rounded-2xl m-2 md:m-3" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent rounded-2xl md:rounded-2xl m-2 md:m-3" />
           
           {/* Enhanced Navigation with Backdrop Blur */}
           <button
@@ -215,11 +220,11 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ isDark = false }) => {
             <ArrowRight className="w-6 h-6 text-white" />
           </button>
           
-          {/* Netflix-style Content Overlay - Better Positioning */}
-          <div className="absolute inset-0 flex items-end">
-            <div className="w-full p-6 lg:p-12 xl:p-16">
+          {/* Netflix-style Content Overlay - Better Positioning with safe inset to avoid clipping */}
+          <div className="absolute inset-2 md:inset-3 flex items-end">
+            <div className="w-full p-4 md:p-6 lg:p-10 xl:p-14">
               <div className="max-w-4xl">
-                {/* Category Badge */}
+                {/* Free Feature Badge */}
                 <div className="flex items-center gap-4 mb-6">
                   <div className={`
                     w-16 h-16 bg-gradient-to-br ${currentGradient} 
@@ -230,11 +235,16 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ isDark = false }) => {
                     <currentFeature.icon className="w-8 h-8 text-white" />
                   </div>
                   <div>
-                    <span className="text-white/70 text-sm font-medium uppercase tracking-[0.2em] block">
-                      Mental Wellness
-                    </span>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-white/70 text-sm font-medium uppercase tracking-[0.2em]">
+                        100% Free
+                      </span>
+                      <div className="px-2 py-1 bg-green-500/20 rounded-full border border-green-400/30">
+                        <span className="text-green-300 text-xs font-semibold">NO COST</span>
+                      </div>
+                    </div>
                     <span className="text-white text-lg font-semibold">
-                      Wellness Experience
+                      {currentFeature.freeFeature}
                     </span>
                   </div>
                 </div>
@@ -261,17 +271,17 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ isDark = false }) => {
                   {currentFeature.description}
                 </p>
                 
-                {/* Netflix-style CTA Buttons */}
+                {/* Free CTA Buttons */}
                 <div className="flex items-center gap-4 flex-wrap">
                   <button className={`
-                    flex items-center gap-3 bg-white text-black
+                    flex items-center gap-3 bg-gradient-to-r from-green-500 to-blue-500 text-white
                     px-8 py-4 rounded-lg font-bold text-lg
-                    hover:bg-white/90 transition-all duration-200
+                    hover:from-green-600 hover:to-blue-600 transition-all duration-200
                     transform hover:scale-105 shadow-xl
                     ${isVideoHovered ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-90'}
                   `}>
                     <ArrowRight className="w-5 h-5" />
-                    <span>Start Journey</span>
+                    <span>Start Free</span>
                   </button>
                   
                   <button className={`
@@ -282,7 +292,7 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ isDark = false }) => {
                     ${isVideoHovered ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-80'}
                   `}>
                     <Shield className="w-5 h-5" />
-                    <span>More Info</span>
+                    <span>Learn More</span>
                   </button>
                 </div>
               </div>
@@ -295,15 +305,20 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({ isDark = false }) => {
       <div className="max-w-7xl mx-auto px-4 lg:px-8 py-12">
         {/* Section Header */}
         <div className="mb-8">
-          <h2 className={`text-2xl lg:text-3xl font-bold mb-2 ${
-            isDark ? 'text-white' : 'text-slate-900'
-          }`}>
-            Explore Your Wellness Journey
-          </h2>
+          <div className="flex items-center gap-3 mb-4">
+            <h2 className={`text-2xl lg:text-3xl font-bold ${
+              isDark ? 'text-white' : 'text-slate-900'
+            }`}>
+              Free Wellness Features
+            </h2>
+            <div className="px-3 py-1 bg-green-100 rounded-full">
+              <span className="text-green-700 text-sm font-semibold">ALL FREE</span>
+            </div>
+          </div>
           <p className={`text-lg ${
             isDark ? 'text-slate-400' : 'text-slate-600'
           }`}>
-            Discover personalized tools for your mental health
+            Professional mental health tools - completely free, no limits, no subscriptions
           </p>
         </div>
         

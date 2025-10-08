@@ -3,7 +3,7 @@ import { Heart, Calendar, Send, Smile, Meh, Frown, Sun, Moon } from "lucide-reac
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import WellnessHeader from "@/components/WellnessHeader";
+import NavigationHeader from "@/components/NavigationHeader";
 import { usePageTranslation } from "@/hooks/usePageTranslation";
 import { useTheme } from "@/hooks/useTheme";
 
@@ -58,7 +58,7 @@ const DailyCheckIn: React.FC = () => {
         {/* Global glassmorphism overlay - reduced opacity for better background visibility */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-blue-500/3 to-purple-500/5 pointer-events-none"></div>
         
-        <WellnessHeader title={t('daily_checkin')} />
+  <NavigationHeader />
         
         <div className="relative max-w-2xl mx-auto p-6">
           <Card className="text-center backdrop-blur-2xl bg-white/10 border-white/20">
@@ -98,16 +98,16 @@ const DailyCheckIn: React.FC = () => {
       {/* Global glassmorphism overlay - reduced opacity for better background visibility */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-blue-500/3 to-purple-500/5 pointer-events-none"></div>
       
-      <WellnessHeader title={t('daily_checkin')} />
+  <NavigationHeader />
       
       <div className="relative max-w-2xl mx-auto p-6">
         <Card className="backdrop-blur-2xl bg-white/10 border-white/20">
           <CardHeader>
-            <CardTitle className="flex items-center space-x-2 text-white">
+            <CardTitle className="flex items-center space-x-2 text-slate-800">
               <Calendar className="h-6 w-6 text-blue-400" />
               <span>Daily Check-In</span>
             </CardTitle>
-            <p className="text-white/80">
+            <p className="text-slate-700">
               Take a moment to reflect on how you're feeling today. This helps track your wellness journey.
             </p>
           </CardHeader>
@@ -140,7 +140,7 @@ const DailyCheckIn: React.FC = () => {
 
               {/* Energy Level */}
               <div>
-                <label className="block text-sm font-medium text-white mb-3">
+                <label className="block text-sm font-medium text-slate-800 mb-3">
                   Energy Level (1-10)
                 </label>
                 <div className="flex items-center space-x-4">
@@ -162,7 +162,7 @@ const DailyCheckIn: React.FC = () => {
 
               {/* Gratitude */}
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium text-slate-800 mb-2">
                   What are you grateful for today?
                 </label>
                 <Input
@@ -175,7 +175,7 @@ const DailyCheckIn: React.FC = () => {
 
               {/* Goals */}
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium text-slate-800 mb-2">
                   What's one goal for today?
                 </label>
                 <Input
@@ -188,7 +188,7 @@ const DailyCheckIn: React.FC = () => {
 
               {/* Challenges */}
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium text-slate-800 mb-2">
                   Any challenges you're facing? (Optional)
                 </label>
                 <Input
@@ -214,10 +214,10 @@ const DailyCheckIn: React.FC = () => {
         {/* Helpful Tips */}
         <Card className="mt-6 backdrop-blur-2xl bg-white/10 border-white/20">
           <CardHeader>
-            <CardTitle className="text-lg text-white">💡 Daily Check-In Tips</CardTitle>
+            <CardTitle className="text-lg text-slate-800">💡 Daily Check-In Tips</CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className="space-y-2 text-sm text-white/80">
+            <ul className="space-y-2 text-sm text-slate-700">
               <li>• Be honest about your feelings - there are no wrong answers</li>
               <li>• Small wins count - celebrate progress, no matter how small</li>
               <li>• Use this time for self-reflection and mindfulness</li>

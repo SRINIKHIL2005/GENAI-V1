@@ -31,24 +31,24 @@ const DarkLanding: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const testimonials = [
+  const freeFeatures = [
     {
-      name: "Sarah M.",
-      role: "Working Professional",
-      content: "Saathi helped me find peace during my darkest hours. The nighttime support is incredible.",
-      rating: 5
+      title: "100% Free Forever",
+      description: "All features, no payments, no subscriptions, no hidden costs - mental health support should be accessible to everyone.",
+      icon: CheckCircle,
+      highlight: "Completely Free"
     },
     {
-      name: "David L.", 
-      role: "Student",
-      content: "The gentle guidance and privacy made all the difference in my mental health journey.",
-      rating: 5
+      title: "24/7 AI Companion",
+      description: "Your personal wellness assistant available around the clock, providing support whenever you need it most.",
+      icon: Moon,
+      highlight: "Always Available"
     },
     {
-      name: "Maya K.",
-      role: "Healthcare Worker", 
-      content: "After long shifts, Saathi provides the emotional support I need to decompress and heal.",
-      rating: 5
+      title: "Privacy First Design",
+      description: "Enterprise-grade security protecting your conversations and data with the highest levels of encryption.",
+      icon: Shield,
+      highlight: "Secure & Private"
     }
   ];
 
@@ -190,64 +190,70 @@ const DarkLanding: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4">
             
             <div className="text-center mb-20">
+              <div className="inline-flex items-center px-6 py-3 bg-green-500/20 border border-green-400/30 rounded-full mb-8">
+                <CheckCircle className="mr-3 h-5 w-5 text-green-400" />
+                <span className="text-green-300 text-sm font-semibold">100% Free Features</span>
+              </div>
               <h2 className="text-4xl md:text-5xl font-light text-white mb-6">
-                Stories of Healing
+                Everything Free, Nothing Hidden
               </h2>
               <p className="text-xl text-slate-400 max-w-3xl mx-auto font-light">
-                Real experiences from people who found peace with Saathi
+                Professional mental health support without the cost barrier
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="bg-slate-800/60 backdrop-blur-xl rounded-3xl p-8 border border-slate-700/50 hover:border-indigo-500/20 transition-all duration-300">
+              {freeFeatures.map((feature, index) => (
+                <div key={index} className="bg-slate-800/60 backdrop-blur-xl rounded-3xl p-8 border border-slate-700/50 hover:border-green-500/20 transition-all duration-300">
                   
-                  <div className="flex mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Heart key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
+                  {/* Feature Icon */}
+                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                    <feature.icon className="h-8 w-8 text-white" />
                   </div>
 
-                  <p className="text-slate-300 leading-relaxed mb-6 font-light italic">
-                    "{testimonial.content}"
+                  {/* Highlight Badge */}
+                  <div className="text-center mb-4">
+                    <span className="inline-flex items-center px-4 py-2 bg-green-500/20 text-green-300 text-sm font-semibold rounded-full border border-green-400/30">
+                      {feature.highlight}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-semibold text-white mb-4 text-center">{feature.title}</h3>
+                  
+                  <p className="text-slate-300 leading-relaxed font-light text-center">
+                    {feature.description}
                   </p>
-
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center mr-4">
-                      <span className="text-white font-semibold text-lg">
-                        {testimonial.name.charAt(0)}
-                      </span>
-                    </div>
-                    <div>
-                      <div className="text-white font-medium">{testimonial.name}</div>
-                      <div className="text-slate-400 text-sm">{testimonial.role}</div>
-                    </div>
-                  </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* CTA Section */}
+        {/* Free CTA Section */}
         <div className="relative z-10 py-32 bg-gradient-to-t from-slate-900 to-transparent">
           <div className="max-w-4xl mx-auto text-center px-4">
             
+            {/* Free Forever Badge */}
+            <div className="inline-flex items-center px-6 py-3 bg-green-500/20 border border-green-400/30 rounded-full mb-8">
+              <CheckCircle className="mr-3 h-5 w-5 text-green-400" />
+              <span className="text-green-300 text-sm font-semibold">100% Free Forever</span>
+            </div>
+            
             <h2 className="text-4xl md:text-5xl font-light text-white mb-8">
-              Ready to Begin Your Healing Journey?
+              Start Your Free Wellness Journey
             </h2>
             
             <p className="text-xl text-slate-400 mb-12 font-light">
-              Join millions who have found peace, comfort, and growth with Saathi
+              No payments, no subscriptions, no limits - just compassionate AI support
             </p>
 
             <Button
               onClick={() => navigate('/auth')}
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-12 py-6 text-xl font-medium rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0"
+              className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white px-12 py-6 text-xl font-medium rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0"
             >
-              <Heart className="mr-4 h-6 w-6" />
-              Start Your Journey Tonight
-              <Moon className="ml-4 h-6 w-6" />
+              <CheckCircle className="mr-4 h-6 w-6" />
+              Get Started - Completely Free
+              <ArrowRight className="ml-4 h-6 w-6" />
             </Button>
           </div>
         </div>

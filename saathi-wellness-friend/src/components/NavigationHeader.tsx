@@ -10,6 +10,8 @@ import {
   User,
 } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
+import { useAuth } from "@/hooks/useAuth.tsx";
+import { useNavigate } from "react-router-dom";
 import { logoutUser } from "@/services/firebase.service";
 
 interface NavigationHeaderProps {
@@ -26,6 +28,8 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   const locationPath = typeof window !== 'undefined' ? window.location.pathname : '/';
   const { theme, setTheme } = useTheme();
   const [showLogoutMenu, setShowLogoutMenu] = useState(false);
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -67,8 +71,18 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
 
   const isActive = (path: string) => locationPath === path;
 
+  const handleNavigate = (path: string) => {
+    const requiresAuth = ["/chat", "/voice", "/progress", "/settings"].includes(path);
+    if (requiresAuth && !currentUser) {
+      if (onAuthClick) onAuthClick();
+      else navigate("/auth");
+      return;
+    }
+    navigate(path);
+  };
+
   return (
-    <header className="w-full z-50 transition-all duration-500">
+    <header className="w-full z-30 transition-all duration-500">
       <div className="max-w-7xl mx-auto px-4 py-3">
         {/* EXACT REPLICA - Two-Layer Navigation Container */}
         <div className="relative">
@@ -86,10 +100,13 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
             
             {/* Left Logo Section */}
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center shadow-lg">
                 <Heart className="h-5 w-5 text-white" />
               </div>
               <span className="text-xl font-bold text-white">Saathi</span>
+              <div className="px-2 py-1 bg-green-500/20 rounded-full border border-green-400/30">
+                <span className="text-green-300 text-xs font-semibold">FREE</span>
+              </div>
             </div>
 
             {/* Center Navigation - TWO LAYER STRUCTURE */}
@@ -106,9 +123,9 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
                     const active = isActive(item.path);
                     
                     return (
-                      <a
+                      <button
                         key={item.path}
-                        href={item.path}
+                        onClick={() => handleNavigate(item.path)}
                         className={`flex items-center space-x-2 px-4 py-2.5 rounded-full transition-all duration-300 ${
                           active 
                             ? 'bg-white text-gray-700 shadow-md' 
@@ -117,7 +134,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
                       >
                         <Icon className="h-4 w-4" />
                         <span className="text-sm font-medium">{item.label}</span>
-                      </a>
+                      </button>
                     );
                   })}
                 </div>
@@ -131,7 +148,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
                 {/* Glow Effect */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400/30 to-blue-500/30 blur-md opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                 
-                <button className="relative w-10 h-10 rounded-full bg-gradient-to-br from-white/15 to-white/5 border border-white/30 backdrop-blur-xl flex items-center justify-center text-white/70 hover:text-white hover:bg-gradient-to-br hover:from-cyan-400/20 hover:to-blue-500/20 hover:border-cyan-400/40 hover:shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 group-hover:scale-110">
+                <button onClick={() => handleNavigate('/settings')} className="relative w-10 h-10 rounded-full bg-gradient-to-br from-white/15 to-white/5 border border-white/30 backdrop-blur-xl flex items-center justify-center text-white/70 hover:text-white hover:bg-gradient-to-br hover:from-cyan-400/20 hover:to-blue-500/20 hover:border-cyan-400/40 hover:shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 group-hover:scale-110">
                   <span className="text-lg">⚙️</span>
                   {/* Inner Glow */}
                   <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/10 to-transparent opacity-50"></div>

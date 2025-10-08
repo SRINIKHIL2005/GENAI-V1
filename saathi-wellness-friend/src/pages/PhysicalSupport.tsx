@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Dumbbell, Timer, Play, Pause, RotateCcw, Heart, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import WellnessHeader from "@/components/WellnessHeader";
+import NavigationHeader from "@/components/NavigationHeader";
 import { useTheme } from "@/hooks/useTheme";
 
 interface Exercise {
@@ -205,7 +205,7 @@ const PhysicalSupport: React.FC = () => {
       {/* Global glassmorphism overlay - reduced opacity for better background visibility */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-blue-500/3 to-purple-500/5 pointer-events-none"></div>
       
-      <WellnessHeader title="Physical Support" />
+  <NavigationHeader />
       
       <div className="relative max-w-4xl mx-auto p-6 space-y-6">
         {/* Active Workout */}

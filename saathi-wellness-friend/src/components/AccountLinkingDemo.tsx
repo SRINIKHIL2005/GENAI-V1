@@ -3,7 +3,7 @@ import { CheckCircle, AlertCircle, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import WellnessHeader from "@/components/WellnessHeader";
+import NavigationHeader from "@/components/NavigationHeader";
 
 const AccountLinkingDemo: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -23,7 +23,7 @@ const AccountLinkingDemo: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <WellnessHeader title="Account Linking" />
+  <NavigationHeader />
       
       <div className="max-w-2xl mx-auto p-6">
         <Card>
