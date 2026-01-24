@@ -104,7 +104,7 @@ interface PageTranslationWrapperProps {
 }
 
 export function PageTranslationWrapper({ children }: PageTranslationWrapperProps) {
-  const { isEnabled, translateText } = useRealTimeTranslation();
+  const { isEnabled } = useRealTimeTranslation();
   const [translatedContent, setTranslatedContent] = useState<React.ReactNode>(children);
 
   useEffect(() => {
