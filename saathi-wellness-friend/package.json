@@ -5,11 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+  "server": "node --loader ts-node/esm server/src/index.ts",
+    "migrate:moods": "ts-node server/scripts/migrate_dedupe_moods.ts",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "express": "^4.18.2",
+    "firebase-admin": "^12.0.0",
+    "dotenv": "^16.3.1",
+    "body-parser": "^1.20.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
@@ -43,6 +49,9 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "ts-node": "^10.9.2",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.5",
     "@types/react": "^18.3.24",
     "@types/react-dom": "^18.3.7",
     "@typescript-eslint/eslint-plugin": "^6.14.0",

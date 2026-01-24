@@ -24,7 +24,20 @@ interface RealTimeTranslationProviderProps {
 
 export function RealTimeTranslationProvider({ children }: RealTimeTranslationProviderProps) {
   const [isEnabled, setIsEnabled] = useState(false);
-  const [targetLanguage, setTargetLanguage] = useState('es'); // Default to Spanish
+  // Default to Hindi for India-focused experience
+  const [targetLanguage, setTargetLanguage] = useState('hi');
+
+  // very small in-memory cache for demo (avoid rate limits on free API)
+  const cache = React.useRef<Map<string, string>>(new Map());
+
+  const normalizeLang = (lang: string | undefined) => {
+    if (!lang) return 'en';
+    const base = lang.toLowerCase().split('-')[0];
+    // map some common variants
+    if (base === 'en') return 'en';
+    if (base === 'hi') return 'hi';
+    return base;
+  };
 
   const toggleTranslation = () => {
     setIsEnabled(!isEnabled);
@@ -36,15 +49,30 @@ export function RealTimeTranslationProvider({ children }: RealTimeTranslationPro
     }
 
     try {
+      // keep very short strings as-is
+      if (text.length < 2) return text;
+
+      const sourceLanguage = normalizeLang(typeof navigator !== 'undefined' ? navigator.language : 'en');
+      const key = `${sourceLanguage}|${targetLanguage}|${text}`;
+      const existing = cache.current.get(key);
+      if (existing) return existing;
+
       // Using MyMemory free translation API
       const response = await fetch(
-        `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|${targetLanguage}`
+        `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${sourceLanguage}|${targetLanguage}`
       );
       
       const data = await response.json();
       
       if (data.responseStatus === 200) {
-        return data.responseData.translatedText;
+        const translated = data.responseData.translatedText as string;
+        cache.current.set(key, translated);
+        // cap cache size
+        if (cache.current.size > 200) {
+          const first = cache.current.keys().next().value as string | undefined;
+          if (first) cache.current.delete(first);
+        }
+        return translated;
       } else {
         console.warn('Translation API error:', data.responseDetails);
         return text;

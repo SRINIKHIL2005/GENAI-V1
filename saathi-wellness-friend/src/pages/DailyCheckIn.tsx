@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import NavigationHeader from "@/components/NavigationHeader";
+import LoadingAnimation from "@/components/LoadingAnimation";
 import { useTheme } from "@/hooks/useTheme";
 
 const DailyCheckIn: React.FC = () => {
@@ -60,25 +61,35 @@ const DailyCheckIn: React.FC = () => {
   <NavigationHeader />
         
         <div className="relative max-w-2xl mx-auto p-6">
-          <Card className="text-center backdrop-blur-2xl bg-white/10 border-white/20">
-            <CardContent className="p-8">
-              <div className="w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Heart className="h-8 w-8 text-green-500" />
-              </div>
-              <h2 className="text-2xl font-bold text-white mb-2">
-                Thank you for checking in!
-              </h2>
-              <p className="text-white/80 mb-6">
-                Your daily check-in has been recorded. Keep up the great work on your wellness journey!
-              </p>
-              <Button 
-                onClick={() => setSubmitted(false)}
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
-              >
-                Check In Again
-              </Button>
-            </CardContent>
-          </Card>
+          <LoadingAnimation delay={0} direction="fade">
+            <Card className="text-center backdrop-blur-2xl bg-white/10 border-white/20">
+              <CardContent className="p-8">
+                <LoadingAnimation delay={200} direction="up">
+                  <div className="w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Heart className="h-8 w-8 text-green-500" />
+                  </div>
+                </LoadingAnimation>
+                <LoadingAnimation delay={400} direction="up">
+                  <h2 className="text-2xl font-bold text-white mb-2">
+                    Thank you for checking in!
+                  </h2>
+                </LoadingAnimation>
+                <LoadingAnimation delay={600} direction="up">
+                  <p className="text-white/80 mb-6">
+                    Your daily check-in has been recorded. Keep up the great work on your wellness journey!
+                  </p>
+                </LoadingAnimation>
+                <LoadingAnimation delay={800} direction="up">
+                  <Button 
+                    onClick={() => setSubmitted(false)}
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-200"
+                  >
+                    Check In Again
+                  </Button>
+                </LoadingAnimation>
+              </CardContent>
+            </Card>
+          </LoadingAnimation>
         </div>
       </div>
     );
@@ -100,16 +111,21 @@ const DailyCheckIn: React.FC = () => {
   <NavigationHeader />
       
       <div className="relative max-w-2xl mx-auto p-6">
-        <Card className="backdrop-blur-2xl bg-white/10 border-white/20">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2 text-slate-800">
-              <Calendar className="h-6 w-6 text-blue-400" />
-              <span>Daily Check-In</span>
-            </CardTitle>
-            <p className="text-slate-700">
-              Take a moment to reflect on how you're feeling today. This helps track your wellness journey.
-            </p>
-          </CardHeader>
+        <LoadingAnimation delay={100} direction="up">
+          <Card className="backdrop-blur-2xl bg-white/10 border-white/20">
+            <CardHeader>
+              <LoadingAnimation delay={300} direction="left">
+                <CardTitle className="flex items-center space-x-2 text-slate-800">
+                  <Calendar className="h-6 w-6 text-blue-400" />
+                  <span>Daily Check-In</span>
+                </CardTitle>
+              </LoadingAnimation>
+              <LoadingAnimation delay={500} direction="up">
+                <p className="text-slate-700">
+                  Take a moment to reflect on how you're feeling today. This helps track your wellness journey.
+                </p>
+              </LoadingAnimation>
+            </CardHeader>
 
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -208,22 +224,25 @@ const DailyCheckIn: React.FC = () => {
               </Button>
             </form>
           </CardContent>
-        </Card>
+          </Card>
+        </LoadingAnimation>
 
         {/* Helpful Tips */}
-        <Card className="mt-6 backdrop-blur-2xl bg-white/10 border-white/20">
-          <CardHeader>
-            <CardTitle className="text-lg text-slate-800">💡 Daily Check-In Tips</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2 text-sm text-slate-700">
-              <li>• Be honest about your feelings - there are no wrong answers</li>
-              <li>• Small wins count - celebrate progress, no matter how small</li>
-              <li>• Use this time for self-reflection and mindfulness</li>
-              <li>• Your responses help us provide better support</li>
-            </ul>
-          </CardContent>
-        </Card>
+        <LoadingAnimation delay={700} direction="up">
+          <Card className="mt-6 backdrop-blur-2xl bg-white/10 border-white/20">
+            <CardHeader>
+              <CardTitle className="text-lg text-slate-800">💡 Daily Check-In Tips</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2 text-sm text-slate-700">
+                <li>• Be honest about your feelings - there are no wrong answers</li>
+                <li>• Small wins count - celebrate progress, no matter how small</li>
+                <li>• Use this time for self-reflection and mindfulness</li>
+                <li>• Your responses help us provide better support</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </LoadingAnimation>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode, useState } from 'react';
 
 interface TranslationContextType {
   t: (key: string, fallback?: string) => string;
@@ -17,6 +17,8 @@ export const usePageTranslation = () => {
 };
 
 export const PageTranslationWrapper = ({ children }: { children: ReactNode }) => {
+  const [currentLanguage, setCurrentLanguage] = useState('en');
+
   const t = (key: string, fallback?: string) => {
     // Simple translation function - in a real app this would use i18n
     return fallback || key;
@@ -24,8 +26,8 @@ export const PageTranslationWrapper = ({ children }: { children: ReactNode }) =>
 
   const value = {
     t,
-    currentLanguage: 'en',
-    setLanguage: () => {},
+    currentLanguage,
+    setLanguage: setCurrentLanguage,
   };
 
   return React.createElement(

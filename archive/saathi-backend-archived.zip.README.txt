@@ -1,0 +1,1 @@
+Note: The original 'saathi-backend' folder remains in the repo. If you want it removed, run a git move or delete it manually. For now, it's marked as archived via this directory and README.

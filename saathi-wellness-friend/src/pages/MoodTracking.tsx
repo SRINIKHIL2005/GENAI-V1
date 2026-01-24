@@ -3,7 +3,10 @@ import { TrendingUp, Calendar, BarChart3, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import NavigationHeader from "@/components/NavigationHeader";
+import LoadingAnimation from "@/components/LoadingAnimation";
 import { useTheme } from "@/hooks/useTheme";
+import { useAuth } from '@/hooks/useAuth.tsx';
+import { saveMoodEntry as saveMoodEntrySvc, getMoodHistory as getMoodHistorySvc } from '@/services/firebase.service';
 
 interface MoodEntry {
   id: string;
@@ -26,31 +29,64 @@ const MoodTracking: React.FC = () => {
     ? `url('${asset("Videos/Gemini_Generated_Image_o3tfm6o3tfm6o3tf.png")}')`
     : `url('${asset("Videos/Gemini_Generated_Image_5mb6o5mb6o5mb6o5.png")}')`;
   const [moodHistory, setMoodHistory] = useState<MoodEntry[]>([]);
+  const { currentUser, userData } = useAuth();
 
   useEffect(() => {
-    // Load mood history from localStorage
-    const saved = localStorage.getItem("moodHistory");
-    if (saved) {
-      setMoodHistory(JSON.parse(saved));
-    }
-  }, []);
+    // Load mood history from Firestore when user is available
+    const load = async () => {
+      if (!currentUser) return;
+      try {
+        const docs = await getMoodHistorySvc(currentUser.uid, 30);
+        // Map documents to MoodEntry shape, ensure id present
+        const entries: MoodEntry[] = docs.map((d: any) => ({
+          id: d.id,
+          mood: d.mood ?? 0,
+          note: d.note ?? '',
+          date: d.date ?? (d.timestamp ? new Date(d.timestamp.seconds * 1000).toISOString().split('T')[0] : ''),
+          energy: d.energy ?? 0,
+          stress: d.stress ?? 0,
+        }));
+        setMoodHistory(entries);
+      } catch (e) {
+        console.error('Failed to load mood history', e);
+      }
+    };
 
-  const saveMoodEntry = () => {
-    const newEntry: MoodEntry = {
-      id: Date.now().toString(),
+    load();
+  }, [currentUser]);
+
+  const saveMoodEntry = async () => {
+    if (!currentUser) {
+      alert('Please sign in to save your mood.');
+      return;
+    }
+
+    const payload = {
       mood: currentMood,
       note,
-      date: new Date().toISOString().split("T")[0],
       energy: currentEnergy,
       stress: currentStress,
     };
 
-    const updatedHistory = [newEntry, ...moodHistory.slice(0, 29)]; // Keep last 30 entries
-    setMoodHistory(updatedHistory);
-    localStorage.setItem("moodHistory", JSON.stringify(updatedHistory));
-    
-    setNote("");
-    alert("Mood entry saved!");
+    try {
+      await saveMoodEntrySvc(currentUser.uid, payload);
+      // refresh history (server enforces one entry per day)
+      const docs = await getMoodHistorySvc(currentUser.uid, 30);
+      const entries: MoodEntry[] = docs.map((d: any) => ({
+        id: d.id,
+        mood: d.mood ?? 0,
+        note: d.note ?? '',
+        date: d.date ?? (d.timestamp ? new Date(d.timestamp.seconds * 1000).toISOString().split('T')[0] : ''),
+        energy: d.energy ?? 0,
+        stress: d.stress ?? 0,
+      }));
+      setMoodHistory(entries);
+      setNote("");
+      alert('Mood entry saved!');
+    } catch (e) {
+      console.error('Failed to save mood', e);
+      alert('Failed to save mood. Please try again.');
+    }
   };
 
   const getMoodEmoji = (mood: number) => {
@@ -98,7 +134,8 @@ const MoodTracking: React.FC = () => {
 
       <div className="relative max-w-4xl mx-auto p-6 space-y-6">
         {/* Current Mood Entry */}
-        <Card className={`backdrop-blur-2xl ${theme === 'light' ? 'bg-white/90 border-slate-200' : 'bg-white/10 border-white/20'}`}>
+        <LoadingAnimation delay={100} direction="up">
+          <Card className={`backdrop-blur-2xl ${theme === 'light' ? 'bg-white/90 border-slate-200' : 'bg-white/10 border-white/20'}`}>
           <CardHeader>
             <CardTitle className={`flex items-center space-x-2 ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
               <Heart className={`h-6 w-6 ${theme === 'light' ? 'text-rose-500' : 'text-red-400'}`} />
@@ -167,15 +204,17 @@ const MoodTracking: React.FC = () => {
 
             <Button 
               onClick={saveMoodEntry}
-              className={`w-full ${theme === 'light' ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700'}`}
+              className={`w-full transform hover:scale-105 transition-all duration-200 ${theme === 'light' ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700'}`}
             >
               Save Mood Entry
             </Button>
           </CardContent>
         </Card>
+        </LoadingAnimation>
 
         {/* Mood Analytics */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <LoadingAnimation delay={300} direction="up">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Card className={`backdrop-blur-2xl ${theme === 'light' ? 'bg-white/90 border-slate-200' : 'bg-white/10 border-white/20'}`}>
             <CardHeader>
               <CardTitle className={`flex items-center space-x-2 ${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>
@@ -219,16 +258,18 @@ const MoodTracking: React.FC = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className={`text-3xl font-bold ${theme === 'light' ? 'text-purple-700' : 'text-purple-400'}`}>
-                {moodHistory.length}
+                <div className={`text-3xl font-bold ${theme === 'light' ? 'text-purple-700' : 'text-purple-400'}`}>
+                {userData?.wellness?.streak ?? moodHistory.length}
               </div>
               <p className={`${theme === 'light' ? 'text-slate-700' : 'text-white/80'}`}>Days tracked</p>
             </CardContent>
           </Card>
-        </div>
+          </div>
+        </LoadingAnimation>
 
         {/* Recent Mood History */}
-        <Card className={`backdrop-blur-2xl ${theme === 'light' ? 'bg-white/90 border-slate-200' : 'bg-white/10 border-white/20'}`}>
+        <LoadingAnimation delay={500} direction="up">
+          <Card className={`backdrop-blur-2xl ${theme === 'light' ? 'bg-white/90 border-slate-200' : 'bg-white/10 border-white/20'}`}>
           <CardHeader>
             <CardTitle className={`${theme === 'light' ? 'text-slate-900' : 'text-white'}`}>Recent Mood History</CardTitle>
           </CardHeader>
@@ -265,7 +306,8 @@ const MoodTracking: React.FC = () => {
               </div>
             )}
           </CardContent>
-        </Card>
+          </Card>
+        </LoadingAnimation>
       </div>
     </div>
   );

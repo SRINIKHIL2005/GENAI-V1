@@ -3,6 +3,7 @@ import { Music, Play, Pause, SkipForward, SkipBack, Volume2, Shuffle, Repeat } f
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import NavigationHeader from "@/components/NavigationHeader";
+import LoadingAnimation from "@/components/LoadingAnimation";
 import { useTheme } from "@/hooks/useTheme";
 
 interface Track {
@@ -246,7 +247,8 @@ const MusicRelaxation: React.FC = () => {
       <div className="relative max-w-4xl mx-auto p-6 space-y-6">
         {/* Music Player */}
         {currentTrack && (
-          <Card>
+          <LoadingAnimation delay={100} direction="up">
+            <Card>
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <Music className="h-6 w-6 text-blue-500" />
@@ -350,9 +352,11 @@ const MusicRelaxation: React.FC = () => {
               </div>
             </CardContent>
           </Card>
+          </LoadingAnimation>
         )}
 
         {/* Playlists */}
+        <LoadingAnimation delay={200} direction="up">
         <Card>
           <CardHeader>
             <CardTitle>Relaxation Playlists</CardTitle>
@@ -388,8 +392,10 @@ const MusicRelaxation: React.FC = () => {
             </div>
           </CardContent>
         </Card>
+        </LoadingAnimation>
 
         {/* Music Library */}
+        <LoadingAnimation delay={300} direction="up">
         <Card>
           <CardHeader>
             <CardTitle>Music Library</CardTitle>
@@ -444,8 +450,10 @@ const MusicRelaxation: React.FC = () => {
             </div>
           </CardContent>
         </Card>
+        </LoadingAnimation>
 
         {/* Benefits Info */}
+        <LoadingAnimation delay={400} direction="up">
         <Card>
           <CardHeader>
             <CardTitle>Music Therapy Benefits</CardTitle>
@@ -475,6 +483,7 @@ const MusicRelaxation: React.FC = () => {
             </div>
           </CardContent>
         </Card>
+        </LoadingAnimation>
 
         {/* Hidden Audio Element */}
         <audio ref={audioRef} preload="metadata" />

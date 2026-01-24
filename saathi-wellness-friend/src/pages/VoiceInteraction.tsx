@@ -3,6 +3,7 @@ import { Mic, MicOff, Volume2, VolumeX, Pause, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import NavigationHeader from "@/components/NavigationHeader";
+import LoadingAnimation from "@/components/LoadingAnimation";
 import { useAuth } from "@/hooks/useAuth";
 import { useTheme } from "@/hooks/useTheme";
 
@@ -165,16 +166,17 @@ const VoiceInteraction: React.FC = () => {
       
       <div className="relative max-w-4xl mx-auto p-6 space-y-6">
         {/* Voice Control Panel */}
-        <Card className="backdrop-blur-2xl bg-white/10 border-white/20">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2 text-white">
-              <Mic className="h-6 w-6 text-blue-400" />
-              <span>Voice Wellness Support</span>
-            </CardTitle>
-            <p className="text-gray-600 dark:text-gray-400">
-              Talk to your AI wellness companion. Share your feelings and get personalized support.
-            </p>
-          </CardHeader>
+        <LoadingAnimation delay={100} direction="up">
+          <Card className="backdrop-blur-2xl bg-white/10 border-white/20">
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2 text-white">
+                <Mic className="h-6 w-6 text-blue-400" />
+                <span>Voice Wellness Support</span>
+              </CardTitle>
+              <p className="text-gray-600 dark:text-gray-400">
+                Talk to your AI wellness companion. Share your feelings and get personalized support.
+              </p>
+            </CardHeader>
           <CardContent className="space-y-6">
             {/* Main Voice Controls */}
             <div className="flex items-center justify-center space-x-4">
@@ -239,12 +241,14 @@ const VoiceInteraction: React.FC = () => {
             )}
           </CardContent>
         </Card>
+        </LoadingAnimation>
 
         {/* Voice Session History */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Conversations</CardTitle>
-          </CardHeader>
+        <LoadingAnimation delay={300} direction="up">
+          <Card>
+            <CardHeader>
+              <CardTitle>Recent Conversations</CardTitle>
+            </CardHeader>
           <CardContent>
             {sessions.length === 0 ? (
               <p className="text-gray-500 text-center py-8">
@@ -283,12 +287,14 @@ const VoiceInteraction: React.FC = () => {
             )}
           </CardContent>
         </Card>
+        </LoadingAnimation>
 
         {/* Voice Tips */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Voice Interaction Tips</CardTitle>
-          </CardHeader>
+        <LoadingAnimation delay={500} direction="up">
+          <Card>
+            <CardHeader>
+              <CardTitle>Voice Interaction Tips</CardTitle>
+            </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div>
@@ -312,6 +318,7 @@ const VoiceInteraction: React.FC = () => {
             </div>
           </CardContent>
         </Card>
+        </LoadingAnimation>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { ThemeProvider } from "./hooks/useTheme";
-import { RealTimeTranslationProvider } from "./hooks/useRealTimeTranslation";
+import { RealTimeTranslationProvider } from "./hooks/useRealTimeTranslation.tsx";
 import { PageTranslationWrapper } from "./hooks/usePageTranslation";
 import { AuthProvider, useAuth } from "./hooks/useAuth.tsx";
 import FirebaseDebugger from "./components/FirebaseDebugger";
@@ -23,6 +23,7 @@ import MusicRelaxation from "./pages/MusicRelaxation";
 import ProgressTracking from "./pages/ProgressTracking";
 import NotFound from "./pages/NotFound";
 import AuthPage from "@/pages/AuthPage";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient();
 
@@ -34,7 +35,7 @@ const AppContent = ({ onSignOut }: { onSignOut: () => void }) => {
   // Only redirect on initial load if user is on an invalid route
   useEffect(() => {
     // Only redirect if user lands on an invalid route or the landing page when authenticated
-    const validRoutes = ["/", "/daily-checkin", "/chat", "/mood-tracking", "/voice", "/physical", "/music", "/progress", "/translation-test", "/account-linking", "/password-setup"];
+    const validRoutes = ["/", "/daily-checkin", "/chat", "/mood-tracking", "/voice", "/physical", "/music", "/progress", "/translation-test", "/account-linking", "/password-setup", "/settings"];
     if (!validRoutes.includes(location.pathname)) {
       navigate("/", { replace: true });
     }
@@ -58,6 +59,7 @@ const AppContent = ({ onSignOut }: { onSignOut: () => void }) => {
           <Route path="/physical" element={<PhysicalSupport />} />
           <Route path="/music" element={<MusicRelaxation />} />
           <Route path="/progress" element={<ProgressTracking />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

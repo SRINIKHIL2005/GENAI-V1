@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { AlertTriangle } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
 import DarkLanding from "./DarkLanding";
 import LightLanding from "./LightLanding";
@@ -29,6 +30,31 @@ const Landing: React.FC = () => {
 
   return (
     <div className="relative w-full h-full overflow-hidden">
+      {/* Global temporary downtime notice */}
+      <div className="fixed top-4 inset-x-0 z-30 flex justify-center px-4">
+        <div className="max-w-2xl w-full rounded-2xl border border-amber-400/40 bg-amber-500/15 backdrop-blur-xl px-4 py-3 shadow-lg flex items-start space-x-3 text-amber-50">
+          <div className="mt-0.5">
+            <AlertTriangle className="h-5 w-5 text-amber-300" />
+          </div>
+          <div className="text-sm leading-snug">
+            <p className="font-medium mb-1">Saathi demo backend is temporarily offline</p>
+            <p className="underline decoration-red-500 decoration-2 underline-offset-4">
+              To keep cloud costs manageable, the AI services for this demo aren&apos;t always running.
+              {" "}
+              If you need this experience to be turned on, please email
+              {" "}
+              <a
+                href="mailto:dronasrinikhil@gmail.com"
+                className="font-semibold"
+              >
+                dronasrinikhil@gmail.com
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Loading overlay */}
       <div 
         className={`fixed inset-0 z-50 bg-white transition-opacity duration-1000 pointer-events-none ${

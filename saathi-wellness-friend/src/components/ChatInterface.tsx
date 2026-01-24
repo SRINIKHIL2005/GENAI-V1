@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Mic, Volume2, Heart, AlertTriangle, MessageCircle } from 'lucide-react';
+import LoadingAnimation from '@/components/LoadingAnimation';
 import { useTheme } from '@/hooks/useTheme';
 
 interface Message {
@@ -163,7 +164,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ className = '' }) => {
 
   return (
     <div 
-      className={`min-h-screen flex flex-col ${className}`}
+      className={`min-h-screen flex flex-col relative ${className}`}
       style={{
         backgroundImage,
         backgroundSize: 'cover',
@@ -175,49 +176,36 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ className = '' }) => {
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-blue-500/3 to-purple-500/5 pointer-events-none"></div>
       
       {showCrisisCard && <CrisisCard />}
-      
-      {/* Chat Header */}
-      <div className="relative p-4">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-200/20 via-blue-200/15 to-purple-200/20 backdrop-blur-2xl"></div>
-        <div className="relative flex items-center space-x-3">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center shadow-lg">
-            <Heart className="h-6 w-6 text-white" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold text-white">Saathi Chat</h1>
-            <p className="text-white/70 text-sm">Your confidential wellness companion</p>
-          </div>
-        </div>
-      </div>
+
+      {/* Note: Removed internal chat header. The global NavigationHeader now serves as the top bar for Chat. */}
 
       {/* Messages Container */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {messages.map((message) => (
-          <div
-            key={message.id}
-            className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-          >
-            <div
-              className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
-                message.sender === 'user'
-                  ? 'bg-gradient-to-r from-cyan-500/30 to-blue-500/30 backdrop-blur-xl border border-cyan-400/30 text-white'
-                  : 'bg-gradient-to-r from-white/20 via-white/15 to-white/10 backdrop-blur-xl border border-white/30 text-white'
-              } shadow-lg`}
-            >
-              <p className="text-sm">{message.text}</p>
-              <div className="flex items-center justify-between mt-2">
-                <span className="text-xs opacity-70">
-                  {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </span>
-                {message.sentiment === 'crisis' && (
-                  <AlertTriangle className="h-4 w-4 text-red-300" />
-                )}
-                {message.emotion && (
-                  <span className="text-xs opacity-70 capitalize">{message.emotion}</span>
-                )}
+        {messages.map((message, index) => (
+          <LoadingAnimation key={message.id} delay={index * 200} direction="up">
+            <div className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div
+                className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl transform hover:scale-105 transition-all duration-200 ${
+                  message.sender === 'user'
+                    ? 'bg-gradient-to-r from-cyan-500/30 to-blue-500/30 backdrop-blur-xl border border-cyan-400/30 text-white'
+                    : 'bg-gradient-to-r from-white/20 via-white/15 to-white/10 backdrop-blur-xl border border-white/30 text-white'
+                } shadow-lg`}
+              >
+                <p className="text-sm">{message.text}</p>
+                <div className="flex items-center justify-between mt-2">
+                  <span className="text-xs opacity-70">
+                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </span>
+                  {message.sentiment === 'crisis' && (
+                    <AlertTriangle className="h-4 w-4 text-red-300" />
+                  )}
+                  {message.emotion && (
+                    <span className="text-xs opacity-70 capitalize">{message.emotion}</span>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          </LoadingAnimation>
         ))}
         
         {isTyping && (

@@ -3,6 +3,7 @@ import { Dumbbell, Timer, Play, Pause, RotateCcw, Heart, Zap } from "lucide-reac
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import NavigationHeader from "@/components/NavigationHeader";
+import LoadingAnimation from "@/components/LoadingAnimation";
 import { useTheme } from "@/hooks/useTheme";
 
 interface Exercise {
@@ -211,13 +212,14 @@ const PhysicalSupport: React.FC = () => {
       <div className="relative max-w-4xl mx-auto p-6 space-y-6">
         {/* Active Workout */}
         {activeWorkout && (
-          <Card className="backdrop-blur-2xl bg-white/10 border-white/20">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2 text-white">
-                <Dumbbell className="h-6 w-6 text-blue-400" />
-                <span>Active Workout</span>
-              </CardTitle>
-            </CardHeader>
+          <LoadingAnimation delay={100} direction="up">
+            <Card className="backdrop-blur-2xl bg-white/10 border-white/20">
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2 text-white">
+                  <Dumbbell className="h-6 w-6 text-blue-400" />
+                  <span>Active Workout</span>
+                </CardTitle>
+              </CardHeader>
             <CardContent className="space-y-6">
               {/* Current Exercise */}
               <div className="text-center space-y-4">
@@ -279,17 +281,19 @@ const PhysicalSupport: React.FC = () => {
               </div>
             </CardContent>
           </Card>
+          </LoadingAnimation>
         )}
 
         {/* Workout Templates */}
         {!activeWorkout && (
-          <Card>
-            <CardHeader>
-              <CardTitle>Choose a Workout</CardTitle>
-              <p className="text-gray-600 dark:text-gray-400">
-                Select a workout routine based on your current needs and goals.
-              </p>
-            </CardHeader>
+          <LoadingAnimation delay={200} direction="up">
+            <Card>
+              <CardHeader>
+                <CardTitle>Choose a Workout</CardTitle>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Select a workout routine based on your current needs and goals.
+                </p>
+              </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {workoutTemplates.map((template) => (
@@ -327,13 +331,15 @@ const PhysicalSupport: React.FC = () => {
               </div>
             </CardContent>
           </Card>
+          </LoadingAnimation>
         )}
 
         {/* Exercise Library */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Exercise Library</CardTitle>
-          </CardHeader>
+        <LoadingAnimation delay={400} direction="up">
+          <Card>
+            <CardHeader>
+              <CardTitle>Exercise Library</CardTitle>
+            </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {exerciseLibrary.map((exercise) => (
@@ -363,12 +369,14 @@ const PhysicalSupport: React.FC = () => {
             </div>
           </CardContent>
         </Card>
+        </LoadingAnimation>
 
         {/* Workout History */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Workouts</CardTitle>
-          </CardHeader>
+        <LoadingAnimation delay={600} direction="up">
+          <Card>
+            <CardHeader>
+              <CardTitle>Recent Workouts</CardTitle>
+            </CardHeader>
           <CardContent>
             {completedWorkouts.length === 0 ? (
               <p className="text-gray-500 text-center py-8">
@@ -398,6 +406,7 @@ const PhysicalSupport: React.FC = () => {
             )}
           </CardContent>
         </Card>
+        </LoadingAnimation>
       </div>
     </div>
   );

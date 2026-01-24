@@ -13,6 +13,8 @@ import { useTheme } from "@/hooks/useTheme";
 import { useAuth } from "@/hooks/useAuth.tsx";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "@/services/firebase.service";
+import { useRealTimeTranslation } from "@/hooks/useRealTimeTranslation";
+import { usePageTranslation } from "@/hooks/usePageTranslation";
 
 interface NavigationHeaderProps {
   showAuthButtons?: boolean;
@@ -30,6 +32,8 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   const [showLogoutMenu, setShowLogoutMenu] = useState(false);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
+  const { isEnabled: rtEnabled, toggleTranslation, targetLanguage, setTargetLanguage } = useRealTimeTranslation();
+  const { currentLanguage, setLanguage } = usePageTranslation();
 
   const handleLogout = async () => {
     try {
@@ -82,7 +86,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   };
 
   return (
-    <header className="w-full z-30 transition-all duration-500">
+    <header className="sticky top-0 w-full z-40 transition-all duration-500">
       <div className="max-w-7xl mx-auto px-4 py-3">
         {/* EXACT REPLICA - Two-Layer Navigation Container */}
         <div className="relative">
@@ -143,6 +147,29 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
 
             {/* Right Side Controls */}
             <div className="flex items-center space-x-3">
+              {/* Language Selector + Realtime Toggle */}
+              <div className="flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-2 py-1 backdrop-blur-md">
+                <select
+                  value={currentLanguage}
+                  onChange={(e) => {
+                    const lang = e.target.value;
+                    setLanguage(lang);
+                    setTargetLanguage(lang);
+                  }}
+                  className="bg-transparent text-white/90 text-sm px-2 py-1 rounded focus:outline-none"
+                >
+                  <option value="en">EN</option>
+                  <option value="hi">हिं (HI)</option>
+                  <option value="es">ES</option>
+                </select>
+                <button
+                  onClick={toggleTranslation}
+                  className={`text-xs px-2 py-1 rounded-full border transition-colors ${rtEnabled ? 'bg-green-500/20 border-green-400/40 text-green-200' : 'bg-white/10 border-white/20 text-white/80'}`}
+                  title={`Real-time translate to ${targetLanguage.toUpperCase()}`}
+                >
+                  {rtEnabled ? 'Translate: ON' : 'Translate: OFF'}
+                </button>
+              </div>
               {/* Advanced Settings Button */}
               <div className="relative group">
                 {/* Glow Effect */}

@@ -6,6 +6,10 @@ interface RealTimeTranslationContextType {
   setEnabled: (enabled: boolean) => void;
   currentLanguage: string;
   setLanguage: (language: string) => void;
+  // Added to align with tsx provider usage in NavigationHeader
+  toggleTranslation: () => void;
+  targetLanguage: string;
+  setTargetLanguage: (lang: string) => void;
 }
 
 const RealTimeTranslationContext = createContext<RealTimeTranslationContextType>({
@@ -14,6 +18,9 @@ const RealTimeTranslationContext = createContext<RealTimeTranslationContextType>
   setEnabled: () => {},
   currentLanguage: 'en',
   setLanguage: () => {},
+  toggleTranslation: () => {},
+  targetLanguage: 'hi',
+  setTargetLanguage: () => {},
 });
 
 export const useRealTimeTranslation = () => {
@@ -23,6 +30,9 @@ export const useRealTimeTranslation = () => {
 export const RealTimeTranslationProvider = ({ children }: { children: ReactNode }) => {
   const [isEnabled, setEnabled] = useState(false);
   const [currentLanguage, setLanguage] = useState('en');
+  const [targetLanguage, setTargetLanguage] = useState('hi');
+
+  const toggleTranslation = () => setEnabled((v) => !v);
 
   const translateText = async (text: string, _targetLanguage?: string): Promise<string> => {
     // Simple mock translation - in a real app this would use Google Translate API
@@ -40,6 +50,9 @@ export const RealTimeTranslationProvider = ({ children }: { children: ReactNode 
     setEnabled,
     currentLanguage,
     setLanguage,
+    toggleTranslation,
+    targetLanguage,
+    setTargetLanguage,
   };
 
   return React.createElement(
